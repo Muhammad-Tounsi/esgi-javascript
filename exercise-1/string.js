@@ -76,7 +76,7 @@ function leet(str3){
 
 //leet("Anaconda");
 
-function prop_access(str){
+function prop_access(){
 	
 }
 
