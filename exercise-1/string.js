@@ -1,4 +1,4 @@
-function ucfirst(str){
+/*function ucfirst(str){
 	if(str.length > 0) {
 		var min = str.toLowerCase();
 		console.log(min[0].toUpperCase() + min.substring(1));
@@ -7,7 +7,13 @@ function ucfirst(str){
 	}
 }
 
-//ucfirst("hello world");
+//ucfirst("hello world");*/
+
+function ucfirst(string) {
+	return string[0].toUpperCase() + string.substring(1);
+}
+
+console.log(ucfirst("hello world"));
 
 function capitalize(str1){
 	if(str1.length > 0) {
