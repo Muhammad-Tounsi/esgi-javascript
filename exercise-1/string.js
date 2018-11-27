@@ -92,45 +92,13 @@ function yoda(str) {
 }
 //yoda("Hello World");
 
-
-function ordA(a) {
-  return a.charCodeAt(0) - 65;
-}
- 
-function vigenere(text, key, decode) {
-  var i = 0, b;
-  var output = " ";
-  key = key.toUpperCase().replace(/[^A-Z]/g, '');
-  return text.toUpperCase().replace(/[^A-Z]/g, '').replace(/[A-Z]/g, function(a) {
-    b = key[i++ % key.length];
-    output += String.fromCharCode(((ordA(a) + (decode ? 26 - ordA(b) : ordA(b))) % 26 + 65));
-	console.log(output);
-  });
+function vig(input, key) {
+    array = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+    output = "";
+    for (var i = 0; i < input.length; i++){
+        output += array[(array.indexOf(key[i % key.length]) + array.indexOf(input[i])) % 26];
+    }
+    return output;
 }
 
-//vigenere("wikipedia", "crypto");
-
-function enVigenere(str,key) {
-	key = key.toLowerCase();//make the key easier to work with
-	while (key.length < str.length) {//extend the key longer than our string by appending it to itself
-		key = key + key;
-	}
-	for (var i = 0, len = str.length; i < len; i++) {//for each letter in string
-		if (str[i].match(/^[a-zA-Z]*$/gi) === null  ) {
-			key = key.substr(0, i) + ' ' + key.substr(i);//if the letter in string isn't a-z or A-Z we insert a space at this spot in key, to preserve the key shit for the next real letter
-		}
-		var shift = key[i].charCodeAt(0)-96;//get our shift amount, if it is a space it will be negative, and the for loop won't run on this turn and the character is unchanged
-		for (var j = 0; j < shift; j++) {//caesar shift the letter by shift amount
-			if (str[i].match(/^[a-yA-Y]*$/gi) !== null  ) {
-				str = str.replaceAt(i, String.fromCharCode(str[i].charCodeAt(0) + 1));
-			}
-			else if (str[i].match(/^[zZ]*$/gi) !== null  ) {
-				str = str.replaceAt(i, String.fromCharCode(str[i].charCodeAt(0) - 25));
-			}
-		}
-	}
-	console.log(str);
-}
-
-enVigenere("wikipedia", "crypto");
-
+//console.log(vig("wikipedia", "crypto"));
